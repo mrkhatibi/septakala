@@ -19,9 +19,9 @@ function CartsCard({ item }) {
             <h3>
               نام کالا : <span>{i.name}</span>
             </h3>
-            <h3>
-              تعداد : <span>{i.quantity}</span> <MdMultipleStop />{" "}
-              <span>{formatRial(i.price)}</span> <FaEquals />{" "}
+            <h3 className={styles.countes}>
+              تعداد : <span>{i.quantity}</span> <MdMultipleStop />
+              <span>{formatRial(i.price)}</span> <FaEquals />
               <span>{formatRial(i.quantity * i.price)}</span>
             </h3>
           </div>
