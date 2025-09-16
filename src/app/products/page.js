@@ -26,7 +26,7 @@ export default function Products() {
     "متفرقه",
   ];
 
-  const { data, isPending } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["getAllPosts"],
     queryFn: getAllPosts,
   });
@@ -44,10 +44,10 @@ export default function Products() {
     let result = data;
 
     if (category) {
-      result = result.filter(item => item.category === category);
+      result = result.filter((item) => item.category === category);
     }
     if (search) {
-      result = result.filter(item =>
+      result = result.filter((item) =>
         item.name.toLowerCase().includes(search.toLowerCase())
       );
     }
@@ -69,7 +69,7 @@ export default function Products() {
     setShowFiltered(false);
   };
 
-  if (isPending || !data) return <Spinner />;
+  if (isLoading || !data) return <Spinner />;
 
   return (
     <div className={styles.container}>
