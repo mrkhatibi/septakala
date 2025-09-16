@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Emilys+Candy&display=swap');
+
+.title {
+  margin-top: 30px;
+  text-align: center;
+}
+.sitetitle{
+  font-family: "Emilys Candy", serif;
+    position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  border-radius: 12px;
+  color: #ef0df7;
+  font-weight: 600;
+  font-size: 6.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+@media (max-width : 535) {
+    .sitetitle {
+  font-size: 4.2rem;
+
+    }
+}
+@media (max-width : 311) {
+    .sitetitle {
+  font-size: 3.2rem;
+
+    }
+}
+.button {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  padding: 0.9rem 2rem;
+  border-radius: 12px;
+  background: rgba(58, 12, 163, 0.85); /* بنفش تیره شیشه‌ای */
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+.button a{
+    color: white;
+    text-decoration: none;
+}
+.button:hover {
+  background: rgba(91, 26, 204, 0.95);
+  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}

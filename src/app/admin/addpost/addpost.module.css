@@ -1,0 +1,79 @@
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px 30px;
+  background: linear-gradient(135deg, #4b0082, #8a2be2);
+  border-radius: 16px;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.5);
+}
+
+.container h3 {
+  color: #ffffff; /* بنفش تیره */
+  margin-bottom: 10px;
+}
+.container h1 {
+    text-align: center;
+    color: white;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputdiv{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form div input,
+.form div textarea {
+  max-width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.form div input:focus,
+.form div textarea:focus {
+  border-color: #4b0082;
+  box-shadow: 0 0 6px rgba(75, 0, 130, 0.3);
+  outline: none;
+}
+
+.form div textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+.adddiv{
+  display: flex;
+}
+/* دکمه اصلی */
+.submitButton {
+  background: #4b0082;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  max-width: 145px;
+  margin: 10px;
+}
+
+.submitButton:hover {
+  background: #36005e;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(75,0,130,0.3);
+}
+.selectcategory select{
+  max-width: 500px;
+  height: 35px ;
+  border-radius: 10px;
+  box-shadow: 0 4px 17px rgba(190, 147, 221, 0.89);
+}

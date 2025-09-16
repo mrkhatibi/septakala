@@ -1,0 +1,107 @@
+/* products.module.css */
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.container > div:first-child {
+  background: rgba(255, 255, 255, 0.2); /* شیشه‌ای */
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.container h4 {
+  margin-bottom: 0.5rem;
+  color: #3a0ca3; /* رنگ بنفش تیره مشابه جزئیات */
+}
+
+.container ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  list-style: none;
+  padding: 0;
+}
+
+.container ul li {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 0.6rem 0.7rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #000; /* متن خوانا */
+  font-weight: 500;
+}
+
+.container ul li:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.container button {
+  background: #3a0ca3;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.container button:hover {
+  background: #5f3dc4;
+  transform: translateY(-2px);
+}
+
+.allCards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  
+}
+.noProduct{
+    border-radius: 20px;
+    background-color: #e624349f;
+    border: 7px outset red;
+    color: white;
+    padding: 20px;
+    width: 270px;
+}
+/* ریسپانسیو */
+@media (max-width: 1200px) {
+  .allCards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .allCards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .allCards {
+    grid-template-columns: 1fr;
+  }
+
+  .container > div:first-child {
+    padding: 0.8rem;
+  }
+
+  .container ul li {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,114 @@
+.container {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #2d2d2d;
+  transition: all 0.3s ease;
+}
+
+.info {
+  margin-bottom: 1.5rem;
+}
+
+.info h3 {
+  margin: 0.8rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 0.3rem;
+}
+
+.highlight {
+  color: #6a0dad; /* بنفش تیره */
+  font-weight: 600;
+}
+
+.button {
+  background: rgba(255, 255, 255, 0.85);
+  color: #2d2d2d;
+  border: none;
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* فرم */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.input {
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #6a0dad;
+  box-shadow: 0 0 6px rgba(106, 13, 173, 0.2);
+}
+
+/* دکمه‌های فرم */
+.formActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.cancel {
+  composes: button;
+  background: rgba(255, 200, 200, 0.8);
+  color: #a00;
+}
+
+.cancel:hover {
+  background: rgba(255, 180, 180, 0.9);
+}
+
+/* ===== ریسپانسیو ===== */
+@media (max-width: 480px) {
+  .container {
+    padding: 1.2rem;
+    margin: 1rem;
+  }
+
+  .info h3 {
+    font-size: 0.9rem;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .formActions {
+    flex-direction: column;
+  }
+}

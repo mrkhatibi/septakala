@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.userCard {
+  background: rgba(255, 255, 255, 0.15); /* شیشه‌ای */
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.userCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+}
+
+.userCard h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #272626; /* رنگ متن اصلی */
+}
+
+.userCard h3 span {
+  color: #390e83; /* بنفش روشن برای هایلایت */
+  font-weight: 600;
+}
+
+/* ریسپانسیو */
+@media (max-width: 600px) {
+  .userCard {
+    padding: 1rem;
+  }
+  .userCard h3 {
+    font-size: 0.9rem;
+  }
+}

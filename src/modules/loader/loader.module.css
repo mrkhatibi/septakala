@@ -1,0 +1,23 @@
+.spinnerWrapper {
+  display: flex;
+  justify-content: center; /* وسط افقی */
+  align-items: center;     /* وسط عمودی */
+  height: 100vh;           /* کل ارتفاع صفحه */
+  width: 100%;
+  background: transparent; /* یا می‌تونی رنگ زمینه بدی */
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #8e2de2; /* رنگ بنفش تیره */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
