@@ -1,14 +1,17 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 import getAllPosts from "@/modules/getAllPosts";
 import PostCard from "@/modules/postCard";
-import { useQuery } from "@tanstack/react-query";
-import styles from "./products.module.css";
-import { Suspense, useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import Spinner from "@/modules/loader/Loader";
-function Products() {
+import styles from "./products.module.css";
+
+export default function Products() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
   const categories = [
     "الکترونیک",
     "پوشاک",
@@ -22,92 +25,82 @@ function Products() {
     "ابزار و خودرو",
     "متفرقه",
   ];
+
   const { data, isPending } = useQuery({
     queryKey: ["getAllPosts"],
     queryFn: getAllPosts,
   });
 
-  const [showData, setShowData] = useState();
-  const [showFilteredData, setshowFilteredData] = useState(false);
-  const searchParams = useSearchParams();
+  const [filteredData, setFilteredData] = useState([]);
+  const [showFiltered, setShowFiltered] = useState(false);
+
+  // اعمال فیلتر بر اساس query پارامترها
   useEffect(() => {
+    if (!data) return;
+
     const category = searchParams.get("category");
     const search = searchParams.get("search");
 
-    if (category && !isPending) {
-      const filtered = data.filter((item) => item.category === category);
-      setShowData(filtered);
-      setshowFilteredData(true);
-    } else if (search && !isPending) {
-      console.log(search);
-      const searched = data.filter((item) =>
-        item.name.trim().toLowerCase().includes(search.trim().toLowerCase())
-      );
-      setShowData(searched);
-      setshowFilteredData(true);
-    } else if (category && search && !isPending) {
-      const filtered = data.filter((item) => item.category === category);
-      const searchedOnFilter = filtered.filter((item) =>
-        item.name.trim().toLowerCase().includes(search.trim().toLowerCase())
-      );
-      setShowData(searchedOnFilter);
-      setshowFilteredData(true);
-    }
-  }, [data, isPending, searchParams]);
+    let result = data;
 
-  const categoryHandler = (category) => {
-    const filtered = data.filter((item) => item.category === category);
-    setShowData(filtered);
-    setshowFilteredData(true);
+    if (category) {
+      result = result.filter(item => item.category === category);
+    }
+    if (search) {
+      result = result.filter(item =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    if (category || search) {
+      setFilteredData(result);
+      setShowFiltered(true);
+    } else {
+      setShowFiltered(false);
+    }
+  }, [searchParams, data]);
+
+  const handleCategoryClick = (category) => {
     router.push(`/products?category=${category}`);
   };
-  if (isPending) return <Spinner />;
+
+  const handleClearFilter = () => {
+    router.push("/products");
+    setShowFiltered(false);
+  };
+
+  if (isPending || !data) return <Spinner />;
 
   return (
-    <Suspense fallback={<Spinner />}>
-      <div className={styles.container}>
-        <div>
-          {showFilteredData ? (
-            <button
-              onClick={() => (
-                setshowFilteredData(false), router.push("/products")
-              )}
-            >
-              حذف فیلتر
-            </button>
-          ) : null}
-          <h4>دسته بندی : </h4>
-          <ul>
-            {!isPending &&
-              categories.map((item, index) => (
-                <li key={index} onClick={() => categoryHandler(item)}>
-                  {item}
-                </li>
-              ))}
-          </ul>
-        </div>
-        <div className={styles.allCards}>
-          {!showFilteredData ? (
-            <>
-              {data.map((post) => (
-                <PostCard key={post._id} post={post} />
-              ))}
-            </>
-          ) : (
-            <>
-              {showData.length > 0 ? (
-                showData.map((post) => <PostCard key={post._id} post={post} />)
-              ) : (
-                <h3 className={styles.noProduct}>
-                  محصولی در این دسته بندی وجود ندارد
-                </h3>
-              )}
-            </>
-          )}
-        </div>
+    <div className={styles.container}>
+      <div className={styles.sidebar}>
+        {showFiltered && (
+          <button className={styles.clearBtn} onClick={handleClearFilter}>
+            حذف فیلتر
+          </button>
+        )}
+
+        <h4>دسته بندی :</h4>
+        <ul>
+          {categories.map((cat, idx) => (
+            <li key={idx} onClick={() => handleCategoryClick(cat)}>
+              {cat}
+            </li>
+          ))}
+        </ul>
       </div>
-    </Suspense>
+
+      <div className={styles.allCards}>
+        {(showFiltered ? filteredData : data).length > 0 ? (
+          (showFiltered ? filteredData : data).map((post) => (
+            <PostCard key={post._id} post={post} />
+          ))
+        ) : (
+          <h3 className={styles.noProduct}>
+            محصولی با این مشخصات وجود ندارد
+          </h3>
+        )}
+      </div>
+    </div>
   );
 }
-
-export default Products;
